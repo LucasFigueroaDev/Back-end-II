@@ -1,4 +1,4 @@
-import {UserModel} from '../models/mongodb/user-model.js';
+import {UserModel} from './models/users-model.js';
 import mongoDao from './mongo-dao.js';
 
 class UserDao extends mongoDao {
@@ -6,7 +6,7 @@ class UserDao extends mongoDao {
         super(model);
     }
 
-    getByEmail = async (email) => {
+    getByemail = async (email) => {
         try {
             return await this.model.findOne({ email });
         } catch (error) {
@@ -14,7 +14,6 @@ class UserDao extends mongoDao {
         }
     }
 
-    
 }
 
 export const userDao = new UserDao(UserModel);
