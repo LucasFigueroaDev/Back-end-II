@@ -8,6 +8,22 @@ class UserService {
     constructor(dao) {
         this.dao = dao;
     }
+    getAll = async () => {
+        try {
+            const result = await this.dao.getAll();
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+    getById = async (id) => {
+        try {
+            const result = await this.dao.getById(id);
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
     update = async (id, body) => {
         try {
             const result = await this.dao.update(id, body);

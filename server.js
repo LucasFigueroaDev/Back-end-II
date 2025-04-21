@@ -1,8 +1,8 @@
 import express from "express";
 import productRouter from "./src/routes/product.router.js";
 import userRouter from "./src/routes/user.router.js";
+import adminRouter from "./src/routes/admin.router.js";
 import cookieParser from "cookie-parser";
-import passport from "passport";
 import { connectDB } from "./src/config/connection.db.js";
 import { errorHandler } from "./src/middlewares/errorHandler.js";
 import "./src/config/passport-jwt/jwtStrategy.js";
@@ -17,6 +17,7 @@ app.use(cookieParser());
 
 app.use('/api/products', productRouter);
 app.use('/api/sessions', userRouter);
+app.use('/api/admin', adminRouter);
 
 app.use(errorHandler);
 
