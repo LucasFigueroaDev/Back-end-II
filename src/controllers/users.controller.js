@@ -1,4 +1,4 @@
-import { userService } from "../services/users-service.js";
+import { userService } from "../services/users.service.js";
 
 class UserController {
     constructor(service) {
@@ -51,7 +51,15 @@ class UserController {
         try {
             const { email, password } = req.body;
             const response = await this.service.login(email, password);
-            res.status(200).json({ message: 'User logged in', User: response });
+            const token = this.service.generateToken(response);
+            res.cookie('token', token, { httpOnly: true }).json({ user: token })
+        } catch (error) {
+            next(error);
+        }
+    }
+    logged = async (req, res, next) => {
+        try {
+            res.status(200).json({ message: 'User logged', user: req.user });
         } catch (error) {
             next(error);
         }

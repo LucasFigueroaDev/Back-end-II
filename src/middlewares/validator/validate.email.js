@@ -1,5 +1,5 @@
 import validator from 'validator';
-import CustomError from '../utils/custom-error.js';
+import CustomError from '../../utils/customError.js';
 
 export const validateEmail = (req, res, next) => {
     const { email } = req.body;

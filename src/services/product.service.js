@@ -1,5 +1,5 @@
-import CustomError from "../utils/custom-error.js";
-import { productDao } from "../daos/mongodb/product-dao.js";
+import CustomError from "../utils/customError.js";
+import { productDao } from "../dao/product.dao.js";
 
 class ProductService {
     constructor(dao) {
