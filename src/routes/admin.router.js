@@ -2,7 +2,6 @@ import { adminController } from "../controllers/admin.controller.js";
 import { adminOnly } from "../middlewares/adminOnly.js";
 import { Router } from "express";
 import { validateId } from "../middlewares/validator/validate.id.js";
-import { validateEmail } from "../middlewares/validator/validate.email.js";
 import passport from "passport";
 
 const router = Router();

@@ -9,7 +9,7 @@ const userSchema = new Schema({
     age: { type: Number, require: true },
     password: { type: String, require: true },
     role: { type: String, default: "user" },
-    cart_id: { type: Schema.Types.ObjectId, ref: "carts" },
+    cart_id: { type: Schema.Types.ObjectId, ref: "carts", default: [] },
 });
 
 export const UserModel = model(usersCollection, userSchema);

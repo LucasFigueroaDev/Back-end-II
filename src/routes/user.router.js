@@ -2,7 +2,6 @@ import { Router } from "express";
 import { userController } from "../controllers/users.controller.js";
 import { validateEmail } from "../middlewares/validator/validate.email.js";
 import { validateId } from "../middlewares/validator/validate.id.js";
-import { checkRole } from "../middlewares/checkRole.js";
 import { validateUserUpdate } from "../middlewares/validator/validate.User.Update.js";
 import passport from "passport";
 
