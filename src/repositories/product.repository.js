@@ -1,7 +1,7 @@
 import CustomError from "../utils/customError.js";
 import { productDao } from "../dao/product.dao.js";
 
-class ProductService {
+class ProductRepository {
     constructor(dao) {
         this.dao = dao;
     }
@@ -13,9 +13,10 @@ class ProductService {
             throw new Error(error);
         }
     }
-    getById = async (id) => {
+    getById = async (pid) => {
         try {
-            const result = await this.dao.getById(id);
+            const result = await this.dao.getById(pid);
+            if(!result) throw new CustomError(404, 'El producto no existe');
             return result;
         } catch (error) {
             throw error;
@@ -24,7 +25,7 @@ class ProductService {
     create = async (body) => {
         try {
             const result = await this.dao.create(body);
-            if (!result) throw new CustomError(404, 'Error creating product');
+            if (!result) throw new CustomError(404, 'Error al crear el producto');
             return result;
         } catch (error) {
             throw error;
@@ -33,7 +34,7 @@ class ProductService {
     update = async (id, body) => {
         try {
             const result = await this.dao.update(id, body);            
-            if (!result) throw new CustomError(404, 'Error updating product');
+            if (!result) throw new CustomError(404, 'Error al actualizar el producto');
             return result;
         } catch (error) {
             throw error;
@@ -42,7 +43,7 @@ class ProductService {
     delete = async (id) => {
         try {
             const result = await this.dao.delete(id);
-            if (!result) throw new CustomError(404, 'Error deleting product');
+            if (!result) throw new CustomError(404, 'Error al eliminar el producto');
             return result;
         } catch (error) {
             throw error;
@@ -50,4 +51,4 @@ class ProductService {
     }
 };
 
-export const productService = new ProductService(productDao);
+export const productRepository = new ProductRepository(productDao);

@@ -6,9 +6,17 @@ class UserDao extends mongoDao {
         super(model);
     }
 
-    getByemail = async (email) => {
+    getByEmail = async (email) => {
         try {
             return await this.model.findOne({ email });
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    getUserById = async (uid) => {
+        try {
+            return await this.model.findById(uid).populate('cart');
         } catch (error) {
             throw new Error(error);
         }

@@ -1,4 +1,4 @@
-import { configMail, transporte } from "../services/email.service.js"
+import { configMail, transporte } from "../repositories/email.repository.js"
 
 export const sendMailEth = async (req, res, next) => {
     try {

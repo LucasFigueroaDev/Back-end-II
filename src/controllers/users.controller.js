@@ -1,69 +1,68 @@
-import { userService } from "../services/users.service.js";
+import { userRepository } from "../repositories/users.repository.js";
+import { createResponse } from "../utils/createResponse.js";
 
 class UserController {
-    constructor(service) {
-        this.service = service;
+    constructor(repository) {
+        this.repository = repository;
     }
-    getAll = async (req, res, next) => {
+
+    getAllUser = async (req, res, next) => {
         try {
-            const response = await this.service.getAll();
-            res.status(200).json({ message: 'Users', response });
+            const users = await this.repository.getAllUsers();
+            createResponse(res, 200, { message: `Todos los usuarios: ${users}` });
         } catch (error) {
             next(error);
         }
     }
-    getById = async (req, res, next) => {
-        try {
-            const { id } = req.params;
-            const response = await this.service.getById(id);
-            res.status(200).json({ message: 'User', response });
-        } catch (error) {
-            next(error);
-        }
-    }
-    update = async (req, res, next) => {
+
+    updateUser = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await this.service.update(id, req.body);
-            res.status(200).json({ message: 'User updated', response });
+            const userUpdated = await this.repository.updateUser(id, req.body);
+            createResponse(res, 200, { message: 'Usuario actualizado' });
         } catch (error) {
             next(error);
         }
     }
+
     delete = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await this.service.delete(id);
-            res.status(200).json({ message: 'User deleted', response });
+            const userDeleted = await this.repository.delete(id);
+            createResponse(res, 200, { message: 'Usuario eliminado' });
         } catch (error) {
             next(error);
         }
     }
+
     register = async (req, res, next) => {
         try {
-            const response = await this.service.register(req.body);
-            res.status(201).json({ message: 'User registered', User: response });
+            const newUser = await this.repository.register(req.body);
+            createResponse(res, 201, { message: 'Registro exitoso', newUser });
         } catch (error) {
             next(error);
         }
     }
+
     login = async (req, res, next) => {
         try {
-            const { email, password } = req.body;
-            const response = await this.service.login(email, password);
-            const token = this.service.generateToken(response);
-            res.cookie('token', token, { httpOnly: true }).json({ user: token })
+            const token = await this.repository.login(req.body);
+            res.cookie('token', token, { httpOnly: true });
+            createResponse(res, 200, { message: 'User logged', token: token });
         } catch (error) {
             next(error);
         }
     }
-    logged = async (req, res, next) => {
+
+    profile = async (req, res, next) => {
         try {
-            res.status(200).json({ message: 'User logged', user: req.user });
+            const { id } = req.user;
+            const user = await this.repository.getUserById(id);
+            createResponse(res, 200, user);
         } catch (error) {
             next(error);
         }
     }
 }
 
-export const userController = new UserController(userService);
+export const userController = new UserController(userRepository);
