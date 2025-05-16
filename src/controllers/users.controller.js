@@ -9,7 +9,7 @@ class UserController {
     getAllUser = async (req, res, next) => {
         try {
             const users = await this.repository.getAllUsers();
-            createResponse(res, 200, { message: `Todos los usuarios: ${users}` });
+            createResponse(res, 200, { message: 'Todos los usuarios', users });
         } catch (error) {
             next(error);
         }
@@ -48,7 +48,7 @@ class UserController {
         try {
             const token = await this.repository.login(req.body);
             res.cookie('token', token, { httpOnly: true });
-            createResponse(res, 200, { message: 'User logged', token: token });
+            createResponse(res, 200, { message: 'Usuario logueado', token: token });
         } catch (error) {
             next(error);
         }

@@ -11,10 +11,11 @@ export const transporte = createTransport({
     }
 })
 
-export const configMail = {
-    from: process.env.USER_GOOGLE,
-    to: process.env.USER_GOOGLE,
-    subject: 'RESTABLECER CONTRASEÑA',
-    // text: 'texto plano'
-    html: templateHtml
-}
+export const configMail = (user) => {
+    return {
+        from: process.env.USER_GOOGLE,
+        to: user.email,
+        subject: 'RESTABLECER CONTRASEÑA',
+        html: templateHtml(user),
+    };
+};

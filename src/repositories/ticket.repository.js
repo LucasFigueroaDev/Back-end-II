@@ -25,9 +25,7 @@ class TicketRepository {
             }
 
             const ticket = await this.dao.create({ code: Math.floor(Math.random() * 100000), purchase_datetime: new Date(), amount: amountAcc, purchaser: user.email });
-            if (!ticket) {
-                throw new CustomError(404, 'Error al crear el ticket');
-            }
+            if (!ticket) throw new CustomError(404, 'Error al crear el ticket');
             await cartRepository.clearCart(user.cart);
             return ticket;
         } catch (error) {

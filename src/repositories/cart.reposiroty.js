@@ -29,7 +29,7 @@ class CartRepository {
     existProdInCart = async (cid, pid) => {
         try {
             const response = await this.dao.existProdInCart(cid, pid);
-            if (!response) throw new CustomError('no se encuentra el producto en el carrito', 404)
+            if (!response) throw new CustomError(404, 'no se encuentra el producto en el carrito')
             return response
         } catch (error) {
             throw new Error(error);

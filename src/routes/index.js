@@ -8,7 +8,7 @@ import ticketRouter from "./ticket.router.js";
 const router = Router();
 
 router.use('/products', productRouter);
-router.use('/sessions', userRouter);
+router.use('/users', userRouter);
 router.use('/send', emailRouter);
 router.use('/carts', cartRouter);
 router.use('/ticket', ticketRouter);

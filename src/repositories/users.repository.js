@@ -100,6 +100,20 @@ class UserRepository {
             throw error;
         }
     }
+
+    findUserByResetToken = async (token) => {
+        try {
+            const user = await this.dao.findOne({
+                reset_password_token: token,
+                reset_password_expires: { $gt: Date.now() }
+            });
+            if(!user) throw new CustomError(404, 'Token no valido o expirado');
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    };
+
 }
 
 export const userRepository = new UserRepository(userDao);

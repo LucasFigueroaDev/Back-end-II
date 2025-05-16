@@ -22,6 +22,13 @@ class UserDao extends mongoDao {
         }
     }
 
+    findOne = async (query) =>{
+        try {
+            return await this.model.findOne(query);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 
 export const userDao = new UserDao(UserModel);
