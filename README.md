@@ -27,7 +27,7 @@ src/
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/nombre-del-proyecto.git
+   git clone https://github.com/LucasFigueroaDev/Back-end-II.git
    cd nombre-del-proyecto
    ```
 
@@ -73,7 +73,7 @@ src/
 ## 📦 Scripts
 
 ```bash
-npm run dev     # Inicia el servidor con nodemon (modo desarrollo)
+npm run dev   
 ```
 
 ## 🔐 Funcionalidades destacadas
@@ -87,7 +87,7 @@ npm run dev     # Inicia el servidor con nodemon (modo desarrollo)
 
 ## 📬 Contacto
 
-Para dudas o sugerencias puedes contactarme en [tucorreo@ejemplo.com]
+Para dudas o sugerencias puedes contactarme en [figueroa.dev93@gmail.com]
 
 ---
 
