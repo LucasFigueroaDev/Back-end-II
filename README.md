@@ -87,7 +87,11 @@ npm run dev
 
 ## 📬 Contacto
 
-Para dudas o sugerencias puedes contactarme en [figueroa.dev93@gmail.com]
+- **Nombre**: Figueroa Lucas
+- **Email**: lucasafigueroa93@gmail.com
+- **GitHub**: https://github.com/LucasFigueroaDev
+- **Portafolio**: https://portafolio-five-xi-26.vercel.app/
+- **Linkedin**: https://linkedin.com/in/lucas-a-figueroa
 
 ---
 
